@@ -2,7 +2,7 @@ const { faker } = require("@faker-js/faker");
 
 const SINGERS = [];
 const SONGS = [];
-const GENRES = [];
+// const GENRES = [];
 
 function createRandomSinger() {
     return {
@@ -11,11 +11,11 @@ function createRandomSinger() {
     }
 }
 
-function createRandomGenre(){
-    return {
-        name: faker.music.genre()
-    }
-}
+// function createRandomGenre(){
+//     return {
+//         name: faker.music.genre()
+//     }
+// }
 
 function createRandomSong(){
     return{
@@ -26,7 +26,7 @@ function createRandomSong(){
 }
 
 Array.from({length: 5}).forEach(() => SINGERS.push(createRandomSinger()));
-Array.from({length: 5}).forEach(() => GENRES.push(createRandomGenre()));
+// Array.from({length: 5}).forEach(() => GENRES.push(createRandomGenre()));
 Array.from({length: 10}).forEach(() => SONGS.push(createRandomSong()));
 
-module.exports = { SINGERS, GENRES, SONGS };
+module.exports = { SINGERS, SONGS };
