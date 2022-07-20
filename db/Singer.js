@@ -8,6 +8,13 @@ const Singer = conn.define('singer', {
         validate:{
             notEmpty: true
         }
+    },
+    nationality: {
+        type: STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
     }
 })
 

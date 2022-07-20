@@ -5,6 +5,7 @@ const Genre = conn.define('genre', {
     name:{
         type: STRING,
         allowNull: false,
+        unique: true,
         validate:{
             notEmpty: true
         }
