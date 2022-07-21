@@ -5,8 +5,8 @@ const Nav = (props) =>{
     const pathname = props.location.pathname
     return (
         <nav>
-            <Link to='/' className={pathname === '/' ? 'selected' : ''}><h2>Singer - Songs Dictionary</h2></Link>
-            <Link to='/singers' className={pathname === '/singers' ? 'selected' : ''}>Singer</Link>
+            <Link to='/' className={pathname === '/' ? 'selected' : ''}><h2>Singers - Songs Dictionary</h2></Link>
+            <Link to='/singers' className={pathname === '/singers' ? 'selected' : ''}>Singers</Link>
             <Link to='/genres' className={pathname === '/genres' ? 'selected' : ''}>Genres</Link>
             <Link to='/songs' className={pathname === '/songs' ? 'selected' : ''}>Songs</Link>
         </nav>

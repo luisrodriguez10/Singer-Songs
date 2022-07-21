@@ -5,6 +5,7 @@ const { seeder } = require("./db/index");
 const { Singer } = require('./db/Singer');
 const { Genre } = require('./db/Genre');
 const { Song } = require('./db/Song');
+const { Country } = require('./db/Country');
 
 app.use('/dist', express.static('dist'));
 app.use('/assets', express.static('assets'));
@@ -28,9 +29,23 @@ app.post('/api/singers', async(req, res, next) =>{
     }
 })
 
+app.put('/api/singers/:id', async(req, res, next) =>{
+    try {
+        const singer = await Singer.findByPk(req.params.id);
+        await singer.update(req.body);
+        res.send(singer);
+    } catch (ex) {
+        next(ex)
+    }
+})
+
 app.get('/api/genres', async(req, res, next) =>{
     try {
-        res.send(await Genre.findAll());
+        res.send(await Genre.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        }));
     } catch (ex) {
         next(ex)
     }
@@ -42,13 +57,24 @@ app.get('/api/songs', async(req, res, next) =>{
         next(ex)
     }
 })
-app.get('/api/singers', async(req, res, next) =>{
+
+app.get('/api/countries', async(req, res, next) =>{
     try {
-        res.send(await Singer.findAll());
+        res.send(await Country.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        }));
     } catch (ex) {
         next(ex)
     }
 })
+
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(err.status || 500).send({ err });
+  });
+
 
 const init = async () => {
   try {

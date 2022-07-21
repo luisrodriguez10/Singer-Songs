@@ -14,6 +14,7 @@ class Singers extends Component {
     const { singers } = this.props;
     const { songs } = this.props;
     const { genres } = this.props;
+    const { countries } = this.props;
     const { option } = this.state;
     const { history } = this.props;
 
@@ -44,12 +45,13 @@ class Singers extends Component {
                 const singerGenre = genres.find(
                   (genre) => genre.id === singer.genreId
                 );
+                const country = countries.find(country => country.id === singer.countryId);
                 return (
                   <tr key={singer.id}>
                     <td>
                       <Link to={`/singers/${singer.id}`}>{singer.name}</Link>
                     </td>
-                    <td>{singer.nationality}</td>
+                    <td>{country.name}</td>
                     <td>
                       {singerSongs.length > 0 ? (
                         <ul>
@@ -89,7 +91,7 @@ class Singers extends Component {
                           {genreSingers.map((genreSinger) => {
                             return (
                               <li key={genreSinger.id}>
-                                <Link to={`/singes/${genreSinger.id}`}>
+                                <Link to={`/singers/${genreSinger.id}`}>
                                   {genreSinger.name}
                                 </Link>
                               </li>
@@ -111,11 +113,12 @@ class Singers extends Component {
   }
 }
 
-const mapStateToProps = ({ singers, songs, genres }) => {
+const mapStateToProps = ({ singers, songs, genres, countries }) => {
   return {
     singers,
     songs,
     genres,
+    countries
   };
 };
 

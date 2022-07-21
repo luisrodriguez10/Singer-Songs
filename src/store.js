@@ -10,6 +10,9 @@ const singersReducer = ( state = [], action ) => {
     if(action.type === 'CREATE_SINGER'){
         return [...state, action.singer]
     }
+    if(action.type === 'UPDATE_SINGER'){
+        return state.map(singer => singer.id === action.singer.id ? action.singer : singer)
+    }
     return state
 }
 
@@ -27,10 +30,18 @@ const songsReducer = ( state = [], action ) => {
     return state
 }
 
+const countriesReducer = ( state = [], action ) => {
+    if(action.type === 'LOAD_COUNTRIES'){
+        return action.countries
+    }
+    return state
+}
+
 const reducer = combineReducers({
     singers: singersReducer,
     genres: genresReducer,
-    songs: songsReducer
+    songs: songsReducer,
+    countries: countriesReducer
 })
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
@@ -44,9 +55,16 @@ export const fetchSingers = () =>{
 
 export const createSinger = (singer, history) =>{
     return async(dispatch) =>{
-        console.log(singer)
         singer = (await axios.post('/api/singers', singer)).data;
         dispatch({type: 'CREATE_SINGER', singer});
+        history.push('/singers')
+    }
+}
+
+export const updateSinger = (singer, history) =>{
+    return async(dispatch) =>{
+        singer = (await axios.put(`/api/singers/${singer.id}`, singer)).data;
+        dispatch({type: 'UPDATE_SINGER', singer});
         history.push('/singers')
     }
 }
@@ -62,6 +80,13 @@ export const fetchSongs = () =>{
     return async(dispatch) =>{
         const songs = (await axios.get('/api/songs')).data;
         dispatch({type: 'LOAD_SONGS', songs});
+    }
+}
+
+export const fetchCountries = () =>{
+    return async(dispatch) =>{
+        const countries = (await axios.get('/api/countries')).data;
+        dispatch({type: 'LOAD_COUNTRIES', countries});
     }
 }
 

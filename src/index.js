@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import React, { Component } from "react";
 import { connect, Provider } from "react-redux";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import store, { fetchSingers, fetchGenres, fetchSongs } from "./store";
+import store, { fetchSingers, fetchGenres, fetchSongs, fetchCountries } from "./store";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Singers from "./components/Singers";
@@ -34,6 +34,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchSingers());
       dispatch(fetchGenres());
       dispatch(fetchSongs());
+      dispatch(fetchCountries());
+      dispatch(fetchCountries());
     },
   };
 };

@@ -1,27 +1,27 @@
 [
     {
       "name": "Shakira",
-      "nationality": "Colombia",
-        "genreId": 2
+        "genreId": 2,
+        "countryId": 1
     },
     {
         "name": "Eminen",
-        "nationality": "USA",
-        "genreId": 1
+        "genreId": 1,
+        "countryId": 2
     },
     {
         "name": "Marc Anthony",
-        "nationality": "USA",
-        "genreId": 4
+        "genreId": 4,
+        "countryId": 2
     },
     {
         "name": "Blake Shelton",
-        "nationality": "USA",
-        "genreId": 5
+        "genreId": 5,
+        "countryId": 2
     },
     {
         "name": "Maluma",
-        "nationality": "Colombia",
-        "genreId": 2
+        "genreId": 2,
+        "countryId": 1
     }
 ]
