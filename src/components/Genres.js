@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const Genres = ({ genres, songs, singers, history}) => {
 
     return (
-        <div>
+        <div id="Genres">
             <h2>Genres Page</h2>
             <button onClick={() => history.push('/genres/create')}>Add a Genre</button>
             <ul>
@@ -13,7 +13,7 @@ const Genres = ({ genres, songs, singers, history}) => {
                         const singersGenre = singers.filter(singer => singer.genreId === genre.id);
                         return (
                             <li key={genre.id}>
-                                {genre.name}
+                                Genre: {genre.name}
                                 {
                                     singersGenre.length > 0 ? <ul>
                                     {
@@ -21,14 +21,14 @@ const Genres = ({ genres, songs, singers, history}) => {
                                             const singerSongs = songs.filter(song => song.singerId === singer.id)
                                             return (
                                                 <li key={singer.id}>
-                                                    {singer.name}
+                                                    Singer: {singer.name}
                                                     {
                                                         singerSongs.length > 0 ? <ul>
                                                         {
                                                             singerSongs.map(singerSong => {
                                                                 return (
                                                                     <li key={singerSong.id}>
-                                                                        {singerSong.name}
+                                                                        Song: {singerSong.name}
                                                                     </li>
                                                                 )
                                                             })
