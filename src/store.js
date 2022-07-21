@@ -7,6 +7,9 @@ const singersReducer = ( state = [], action ) => {
     if(action.type === 'LOAD_SINGERS'){
         return action.singers
     }
+    if(action.type === 'CREATE_SINGER'){
+        return [...state, action.singer]
+    }
     return state
 }
 
@@ -36,6 +39,15 @@ export const fetchSingers = () =>{
     return async(dispatch) =>{
         const singers = (await axios.get('/api/singers')).data;
         dispatch({type: 'LOAD_SINGERS', singers});
+    }
+}
+
+export const createSinger = (singer, history) =>{
+    return async(dispatch) =>{
+        console.log(singer)
+        singer = (await axios.post('/api/singers', singer)).data;
+        dispatch({type: 'CREATE_SINGER', singer});
+        history.push('/singers')
     }
 }
 

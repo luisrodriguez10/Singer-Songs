@@ -20,6 +20,14 @@ app.get('/api/singers', async(req, res, next) =>{
     }
 })
 
+app.post('/api/singers', async(req, res, next) =>{
+    try {
+        res.status(201).send( await Singer.create(req.body));
+    } catch (ex) {
+        next(ex)
+    }
+})
+
 app.get('/api/genres', async(req, res, next) =>{
     try {
         res.send(await Genre.findAll());

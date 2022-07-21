@@ -6,6 +6,7 @@ import store, { fetchSingers, fetchGenres, fetchSongs } from './store';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Singers from './components/Singers';
+import SingerForm from './components/SingerForm';
 
 class _App extends Component{
 
@@ -18,7 +19,8 @@ class _App extends Component{
             <div>
                 <Route component={ Nav }/>
                 <Route exact path='/' component={ Home }/>
-                <Route path='/singers' component={ Singers }/>
+                <Route exact path='/singers' component={ Singers }/>
+                <Route path='/singers/create' component={ SingerForm }/>
             </div>
         )
     }

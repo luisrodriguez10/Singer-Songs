@@ -8,7 +8,8 @@ const Singer = conn.define('singer', {
         allowNull: false,
         validate:{
             notEmpty: true
-        }
+        },
+        unique: true
     },
     nationality: {
         type: STRING,
