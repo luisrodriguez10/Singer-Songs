@@ -50,9 +50,26 @@ app.get('/api/genres', async(req, res, next) =>{
         next(ex)
     }
 })
+
+app.post('/api/genres', async(req, res, next) => {
+    try {
+        res.status(201).send(await Genre.create(req.body));
+    } catch (ex) {
+        next(ex)
+    }
+})
+
 app.get('/api/songs', async(req, res, next) =>{
     try {
         res.send(await Song.findAll());
+    } catch (ex) {
+        next(ex)
+    }
+})
+
+app.post('/api/songs', async(req, res, next) => {
+    try {
+        res.status(201).send(await Song.create(req.body));
     } catch (ex) {
         next(ex)
     }

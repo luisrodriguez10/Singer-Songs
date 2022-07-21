@@ -20,12 +20,19 @@ const genresReducer = ( state = [], action ) => {
     if(action.type === 'LOAD_GENRES'){
         return action.genres
     }
+    if(action.type === 'CREATE_GENRE'){
+        return [...state, action.genre]
+    }
+    
     return state
 }
 
 const songsReducer = ( state = [], action ) => {
     if(action.type === 'LOAD_SONGS'){
         return action.songs
+    }
+    if(action.type === 'CREATE_SONG'){
+        return [...state, action.song]
     }
     return state
 }
@@ -76,10 +83,26 @@ export const fetchGenres = () =>{
     }
 }
 
+export const createGenre = (genre, history) =>{
+    return async(dispatch) =>{
+        genre = (await axios.post('/api/genres', genre)).data;
+        dispatch({type: 'CREATE_GENRE', genre});
+        history.push('/genres')
+    }
+}
+
 export const fetchSongs = () =>{
     return async(dispatch) =>{
         const songs = (await axios.get('/api/songs')).data;
         dispatch({type: 'LOAD_SONGS', songs});
+    }
+}
+
+export const createSong = (song, history) =>{
+    return async(dispatch) =>{
+        song = (await axios.post('/api/songs', song)).data
+        dispatch({type: 'CREATE_SONG', song})
+        history.push('/songs')
     }
 }
 

@@ -7,6 +7,10 @@ import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Singers from "./components/Singers";
 import SingerForm from "./components/SingerForm";
+import Genres from "./components/Genres";
+import GenreForm from "./components/GenreForm";
+import Songs from "./components/Songs";
+import SongForm from "./components/SongForm";
 
 class _App extends Component {
   componentDidMount() {
@@ -22,6 +26,10 @@ class _App extends Component {
           <Route exact path="/singers" component={Singers} />
           <Route path="/singers/create" component={SingerForm} />
           <Route path="/singers/:id" component={SingerForm} />
+          <Route exact path="/genres" component={Genres} />
+          <Route path='/genres/create' component={GenreForm}/>
+          <Route exact path="/songs" component={Songs} />
+          <Route path='/songs/create' component={SongForm}/>
         </Switch>
       </div>
     );
