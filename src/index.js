@@ -28,6 +28,7 @@ class _App extends Component {
           <Route path="/singers/:id" component={SingerForm} />
           <Route exact path="/genres" component={Genres} />
           <Route path='/genres/create' component={GenreForm}/>
+          <Route path='/genres/:id' component={GenreForm}/>
           <Route exact path="/songs" component={Songs} />
           <Route path='/songs/create' component={SongForm}/>
         </Switch>

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
-import { createGenre } from '../store';
+import { createGenre, updateGenre } from '../store';
 
 class GenreForm extends Component{
 
@@ -14,6 +14,22 @@ class GenreForm extends Component{
         this.save = this.save.bind(this);
     }
 
+    componentDidMount(){
+        if(this.props.genre.id){
+            this.setState({
+                name: this.props.genre.name
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if(!prevProps.genre.id && this.props.genre.id){
+            this.setState({
+                name: this.props.genre.name
+            })
+        }
+    }
+
     onChange(ev){
 
         this.setState({
@@ -25,7 +41,15 @@ class GenreForm extends Component{
     async save(ev){
         ev.preventDefault();
         try {
-            await this.props.createGenre({name: this.state.name});
+            if(!this.props.genre.id){
+                await this.props.createGenre({name: this.state.name});
+            }else{
+               await this.props.updateGenre({
+                   id: this.props.match.params.id,
+                   name: this.state.name
+               }) 
+            }
+            
         } catch (error) {
             this.setState({error: error.response.data.err.errors[0].message,});
         }
@@ -36,6 +60,7 @@ class GenreForm extends Component{
 
         const {name, error} = this.state;
         const { onChange, save } = this;
+        const { genre } = this.props;
 
         return (
             <div>
@@ -45,7 +70,7 @@ class GenreForm extends Component{
                         <input name="name" value={name}  onChange={onChange}/>
                     </div>
                     <div>
-                        <button>Create</button>
+                        <button disabled={!name}>{genre.id ? 'Edit' : 'Create'}</button>
                         <button onClick={() => this.props.history.push('/genres')}>Cancel</button>
                     </div>
                 </form>
@@ -60,10 +85,20 @@ class GenreForm extends Component{
 
 }
 
-const mapDispatch = (dispatch, {history}) =>{
+const mapState = (state, {match}) =>{
+
+    const id = match.params.id*1;
+    const genre = state.genres.find(genre => genre.id === id) || {name: ''};
     return {
-        createGenre: (genre) => dispatch(createGenre(genre, history))
+        genre
     }
 }
 
-export default connect(null, mapDispatch)(GenreForm);
+const mapDispatch = (dispatch, {history}) =>{
+    return {
+        createGenre: (genre) => dispatch(createGenre(genre, history)),
+        updateGenre: (genre) => dispatch(updateGenre(genre, history))
+    }
+}
+
+export default connect(mapState, mapDispatch)(GenreForm);

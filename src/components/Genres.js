@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Genres = ({ genres, songs, singers, history}) => {
 
@@ -13,7 +14,7 @@ const Genres = ({ genres, songs, singers, history}) => {
                         const singersGenre = singers.filter(singer => singer.genreId === genre.id);
                         return (
                             <li key={genre.id}>
-                                Genre: {genre.name}
+                                Genre: <Link to={`/genres/${genre.id}`}>{genre.name}</Link>
                                 {
                                     singersGenre.length > 0 ? <ul>
                                     {

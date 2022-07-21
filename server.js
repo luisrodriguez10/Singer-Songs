@@ -59,6 +59,16 @@ app.post('/api/genres', async(req, res, next) => {
     }
 })
 
+app.put('/api/genres/:id', async(req, res, next) => {
+    try {
+        const genre = await Genre.findByPk(req.params.id);
+        await genre.update(req.body);
+        res.send(genre);
+    } catch (ex) {
+        next(ex)
+    }
+})
+
 app.get('/api/songs', async(req, res, next) =>{
     try {
         res.send(await Song.findAll());
