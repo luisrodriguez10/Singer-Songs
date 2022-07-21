@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Hips don't lie",
+      "singerId": 1,
+        "genreId": 2
+    },
+    {
+        "name": "Lose Yourself",
+      "singerId": 2,
+        "genreId": 1
+    },
+    {
+        "name": "Vivir Mi Vida",
+      "singerId": 3,
+        "genreId": 4
+    },
+    {
+        "name": "Flor Palida",
+      "singerId": 3,
+        "genreId": 4
+    },
+    {
+        "name": "HP",
+      "singerId": 5,
+        "genreId": 2
+    }
+]

@@ -1,5 +1,6 @@
 const { conn } = require('./conn');
-const { STRING } = conn.Sequelize;
+const { STRING, INTEGER } = conn.Sequelize;
+const { Genre } = require('./Genre');
 
 const Singer = conn.define('singer', {
     name:{
@@ -15,7 +16,13 @@ const Singer = conn.define('singer', {
         validate:{
             notEmpty: true
         }
+    },
+    genreId:{
+        type: INTEGER,
+        allowNull: false
     }
 })
+
+Singer.belongsTo(Genre);
 
 module.exports = { Singer };

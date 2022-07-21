@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Shakira",
+      "nationality": "Colombia",
+        "genreId": 2
+    },
+    {
+        "name": "Eminen",
+        "nationality": "USA",
+        "genreId": 1
+    },
+    {
+        "name": "Marc Anthony",
+        "nationality": "USA",
+        "genreId": 4
+    },
+    {
+        "name": "Blake Shelton",
+        "nationality": "USA",
+        "genreId": 5
+    },
+    {
+        "name": "Maluma",
+        "nationality": "Colombia",
+        "genreId": 2
+    }
+]
