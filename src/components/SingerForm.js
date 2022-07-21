@@ -40,6 +40,8 @@ class SingerForm extends Component{
 
     const {name, nationality, genreId} = this.state;
     const { onChange, save } = this;
+    const { singer } = this.props;
+    console.log(singer)
 
        return (
            <div>
@@ -60,16 +62,18 @@ class SingerForm extends Component{
                             })
                         }
                     </select>
-                    <button disabled={!name || !nationality || !genreId}>Create</button>
+                    <button disabled={!name || !nationality || !genreId}>{ singer.id ? 'Edit' : 'Create'}</button>
                </form>
            </div>
        )
    }
 }
 
-const mapState = (state) =>{
+const mapState = (state, {match}) =>{
+    const singer = state.singers.find(singer => singer.id === match.params.id * 1) || {}
     return {
-        genres: state.genres
+        genres: state.genres,
+        singer
     }
 }
 
